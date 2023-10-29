@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- config -->
+        <service id="devscast_hexa.whitelabel" class="Devscast\Bundle\HexaBundle\WhiteLabel" public="true">
+            <argument key="$config">%devscast_hexa.configuration%</argument>
+        </service>
+
+        <!-- other -->
+        <service id="devscast_hexa.infrastructure.mailer_helper" class="Devscast\Bundle\HexaBundle\Infrastructure\MailerHelper" public="true">
+            <argument id="devscast_hexa.whitelabel" type="service" />
+            <argument id="twig" type="service" />
+            <argument id="mailer.mailer" type="service" />
+            <argument id="translator" type="service" />
+            <argument id="logger" type="service" />
+        </service>
+        <service id="Devscast\Bundle\HexaBundle\Infrastructure\MailerHelper" alias="devscast_hexa.infrastructure.mailer_helper"  public="true" />
+
+        <!-- doctrine -->
+        <service id="devscast_hexa.infrastructure.doctrine.created_at_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\Listener\CreatedAtListener" public="true">
+            <tag name="doctrine.event_listener" event="prePersist" connection="default" />
+        </service>
+        <service id="devscast_hexa.infrastructure.doctrine.updated_at_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\Listener\UpdatedAtListener" public="true">
+            <tag name="doctrine.event_listener" event="postUpdate" connection="default" />
+        </service>
+    </services>
+</container>

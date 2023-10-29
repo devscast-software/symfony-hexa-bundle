@@ -1,0 +1,57 @@
+{
+  "name": "devscast/hexa-bundle",
+  "type": "project",
+  "license": "CC-BY-NC-SA-4.0",
+  "description": "Set of reusable components for Symfony applications built with Hexagonal Architecture",
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=8.2",
+    "doctrine/doctrine-bundle": "^2.10",
+    "doctrine/orm": "^2.16",
+    "erusev/parsedown": "^1.7",
+    "knplabs/knp-paginator-bundle": "^6.2",
+    "symfony/config": "^6.3",
+    "symfony/console": "^6.3",
+    "symfony/contracts": "^3.3",
+    "symfony/dependency-injection": "^6.3",
+    "symfony/form": "^6.3",
+    "symfony/http-foundation": "^6.3",
+    "symfony/http-kernel": "^6.3",
+    "symfony/mailer": "^6.3",
+    "symfony/maker-bundle": "^1.51",
+    "symfony/messenger": "^6.3",
+    "symfony/mime": "^6.3",
+    "symfony/property-access": "^6.3",
+    "symfony/property-info": "^6.3",
+    "symfony/security-core": "^6.3",
+    "symfony/serializer": "^6.3",
+    "symfony/translation": "^6.3",
+    "symfony/uid": "^6.3",
+    "twig/twig": "^3.7"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.4",
+    "phpunit/phpunit": "^9.5",
+    "rector/rector": "^0.12.16",
+    "squizlabs/php_codesniffer": "^3.6",
+    "symplify/easy-coding-standard": "^10.1"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Devscast\\Bundle\\HexaBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Devscast\\Bundle\\HexaBundle\\Tests\\": "tests/"
+    }
+  }
+}
