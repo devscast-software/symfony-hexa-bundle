@@ -1,6 +1,6 @@
 {
   "name": "devscast/hexa-bundle",
-  "type": "project",
+  "type": "library",
   "license": "CC-BY-NC-SA-4.0",
   "description": "Set of reusable components for Symfony applications built with Hexagonal Architecture",
   "minimum-stability": "stable",
@@ -53,5 +53,11 @@
     "psr-4": {
       "Devscast\\Bundle\\HexaBundle\\Tests\\": "tests/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/devscast/symfony-hexa-bundle"
+    }
+  ]
 }
