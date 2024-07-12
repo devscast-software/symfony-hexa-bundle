@@ -9,10 +9,10 @@ namespace Devscast\Bundle\HexaBundle\Infrastructure\Symfony\Controller;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-enum CrudAction
+enum CrudAction: string
 {
-    case CREATE;
-    case READ;
-    case UPDATE;
-    case DELETE;
+    case CREATE = 'write';
+    case READ = 'read';
+    case UPDATE = 'update';
+    case DELETE = 'delete';
 }

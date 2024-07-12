@@ -19,10 +19,10 @@
         <service id="Devscast\Bundle\HexaBundle\Infrastructure\MailerHelper" alias="devscast_hexa.infrastructure.mailer_helper"  public="true" />
 
         <!-- doctrine -->
-        <service id="devscast_hexa.infrastructure.doctrine.created_at_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\Listener\CreatedAtListener" public="true">
+        <service id="devscast_hexa.infrastructure.doctrine.timestamp_pre_persist_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\EventListener\TimestampPrePersistListener" public="true">
             <tag name="doctrine.event_listener" event="prePersist" connection="default" />
         </service>
-        <service id="devscast_hexa.infrastructure.doctrine.updated_at_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\Listener\UpdatedAtListener" public="true">
+        <service id="devscast_hexa.infrastructure.doctrine.timestamp_post_update_listener" class="Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\EventListener\TimestampPostUpdateListener" public="true">
             <tag name="doctrine.event_listener" event="postUpdate" connection="default" />
         </service>
     </services>

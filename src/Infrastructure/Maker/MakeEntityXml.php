@@ -26,7 +26,7 @@ use Twig\Environment;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:entity-xml',
+    name: 'devscast:make:entity-xml',
     description: 'create entities from doctrine xml mapping',
 )]
 #[AsTaggedItem('console.command')]

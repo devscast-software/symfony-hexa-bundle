@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\{{ domain }}\Symfony\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Request;
 use Application\{{ domain }}\Command\Create{{ entityClassName }}Command;
 use Application\{{ domain }}\Command\Delete{{ entityClassName }}Command;
 use Application\{{ domain }}\Command\Update{{ entityClassName }}Command;
@@ -16,7 +17,7 @@ use Infrastructure\{{ domain }}\Symfony\Form\Create{{ entityClassName }}Form;
 use Infrastructure\{{ domain }}\Symfony\Form\Update{{ entityClassName }}Form;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 
 /**
@@ -26,43 +27,29 @@ use Symfony\Component\Routing\Requirement\Requirement;
 */
 #[AsController]
 #[Route('/admin/{{ domain | lower }}/{{ entityClassName | lower }}', 'admin_{{ domain | lower }}_{{ entityClassName | lower }}_')]
-final class {{ entityClassName }}Controller extends AbstractCrudController
+final class Admin{{ entityClassName }}Controller extends AbstractCrudController
 {
-    protected const PREFIX = 'admin';
     protected const DOMAIN = '{{ domain | lower }}';
     protected const ENTITY = '{{ entityClassName | lower }}';
 
-    #[Route('', name: 'index', methods: ['GET'])]
+    #[Route('', name: 'index', methods: [Request::METHOD_GET])]
     public function index({{ entityClassName }}Repository $repository): Response
     {
         return $this->queryIndex($repository);
-        return $this->render(
-            view: $this->getViewPath('index'),
-            parameters: [
-                'data' => $this->getPaginator()->paginate(
-                    target: $repository->findBy([], orderBy: [
-                        'created_at' => 'DESC',
-                    ]),
-                    page: $this->getCurrentRequest()->query->getInt('page', 1),
-                    limit: 50
-                ),
-            ]
-        );
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function new(): Response
     {
         return $this->handleCommand(new Create{{ entityClassName }}Command(), new CrudParams(
             action: CrudAction::CREATE,
-            formClass: Create{{ entityClassName }}Form::class,
-            redirectUrl: $this->generateUrl('admin_{{ domain | lower }}_{{ entityClassName | lower }}_index')
+            formClass: Create{{ entityClassName }}Form::class
         ));
     }
 
-    #[Route('/{id}', name: 'show', requirements: [
+    #[Route('/{id:item}', name: 'show', requirements: [
         'id' => Requirement::UUID,
-    ], methods: ['GET'])]
+    ], methods: [Request::METHOD_GET])]
     public function show({{ entityClassName }} $item): Response
     {
         return $this->render(
@@ -73,30 +60,26 @@ final class {{ entityClassName }}Controller extends AbstractCrudController
         );
     }
 
-    #[Route('/edit/{id}', name: 'edit', requirements: [
+    #[Route('/edit/{id:item}', name: 'edit', requirements: [
         'id' => Requirement::UUID,
-    ], methods: ['GET', 'POST'])]
+    ], methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function edit({{ entityClassName }} $item): Response
     {
         return $this->handleCommand(new Update{{ entityClassName }}Command($item), new CrudParams(
             action: CrudAction::UPDATE,
             item: $item,
             formClass: Update{{ entityClassName }}Form::class
-            redirectUrl: $this->generateUrl('admin_{{ domain | lower }}_{{ entityClassName | lower }}_show', [
-                'id' => $item->getId()
-            ])
         ));
     }
 
-    #[Route('/{id}', name: 'delete', requirements: [
+    #[Route('/{id:item}', name: 'delete', requirements: [
         'id' => Requirement::UUID,
-    ], methods: ['POST', 'DELETE'])]
+    ], methods: [Request::METHOD_POST, Request::METHOD_DELETE])]
     public function delete({{ entityClassName }} $item): Response
     {
         return $this->handleCommand(new Delete{{ entityClassName }}Command($item), new CrudParams(
             action: CrudAction::DELETE,
-            item: $item,
-            redirectUrl: $this->generateUrl('admin_{{ domain | lower }}_{{ entityClassName | lower }}_index')
+            item: $item
         ));
     }
 }

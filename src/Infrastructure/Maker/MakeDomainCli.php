@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:domain',
+    name: 'devscast:make:domain',
     description: 'Create a new domain (bounded context)',
 )]
 #[AsTaggedItem('console.command')]
@@ -57,7 +57,6 @@ class MakeDomainCli extends AbstractMakeCli
         $this->createRawFile("src/Domain/{$domain}/Event/.gitignore");
         $this->createRawFile("src/Domain/{$domain}/Exception/.gitignore");
         $this->createRawFile("src/Domain/{$domain}/Repository/.gitignore");
-        $this->createRawFile("src/Domain/{$domain}/ValueObject/.gitignore");
 
         // application
         $this->createRawFile("src/Application/{$domain}/Command/.gitignore");
@@ -67,7 +66,6 @@ class MakeDomainCli extends AbstractMakeCli
         // infrastructure
         $this->createRawFile("src/Infrastructure/{$domain}/Doctrine/Repository/.gitignore");
         $this->createRawFile("src/Infrastructure/{$domain}/Doctrine/Mapping/Entity/.gitignore");
-        $this->createRawFile("src/Infrastructure/{$domain}/Doctrine/Mapping/ValueObject/.gitignore");
         $this->createRawFile("src/Infrastructure/{$domain}/Symfony/Controller/.gitignore");
         $this->createRawFile("src/Infrastructure/{$domain}/Symfony/Form/.gitignore");
 

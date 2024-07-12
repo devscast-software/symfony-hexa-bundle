@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:value-object',
+    name: 'devscast:make:value-object',
     description: 'create a new value object class',
 )]
 #[AsTaggedItem('console.command')]

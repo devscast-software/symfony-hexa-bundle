@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Devscast\Bundle\HexaBundle\Infrastructure\Symfony\Normalizer;
 
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -12,14 +11,9 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-abstract class AbstractNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
+abstract class AbstractNormalizer implements NormalizerInterface
 {
     abstract public function normalize(mixed $object, string $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null;
 
     abstract public function supportsNormalization($data, string $format = null, array $context = []): bool;
-
-    public function hasCacheableSupportsMethod(): bool
-    {
-        return true;
-    }
 }

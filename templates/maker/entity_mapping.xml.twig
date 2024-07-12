@@ -9,9 +9,6 @@
             repository-class="Infrastructure\{{ domain }}\Doctrine\Repository\{{ repositoryClassName }}"
             table="{{ entityClassName | lower }}"
     >
-        {#<unique-constraints>
-            <unique-constraint columns="email"/>
-        </unique-constraints>#}
         <id name="id" type="uuid" column="id" unqiue="true">
             <generator strategy="CUSTOM"/>
             <custom-id-generator class="doctrine.uuid_generator"/>

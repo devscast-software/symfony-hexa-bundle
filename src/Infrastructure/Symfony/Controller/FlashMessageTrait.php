@@ -50,6 +50,7 @@ trait FlashMessageTrait
             ),
             default => $this->getTranslator()->trans(
                 id: 'global.flashes.something_went_wrong',
+                parameters: [],
                 domain: 'messages'
             )
         };
@@ -59,6 +60,18 @@ trait FlashMessageTrait
     {
         $this->addFlash('error', $this->getTranslator()->trans(
             id: 'global.flashes.something_went_wrong',
+            parameters: [],
+            domain: 'messages'
+        ));
+    }
+
+    protected function addSuccessfulActionFlash(?string $action = null): void
+    {
+        $this->addFlash('success', $this->getTranslator()->trans(
+            id: 'global.flashes.action_done_successfully',
+            parameters: [
+                '%action%' => $action ?? "l'action",
+            ],
             domain: 'messages'
         ));
     }
@@ -94,10 +107,9 @@ trait FlashMessageTrait
     protected function getFormErrors(FormInterface $form): array
     {
         $errors = [];
+        /** @var FormError $error */
         foreach ($form->getErrors() as $error) {
-            if ($error instanceof FormError) {
-                $errors[] = $error->getMessage();
-            }
+            $errors[] = $error->getMessage();
         }
 
         foreach ($form->all() as $childForm) {

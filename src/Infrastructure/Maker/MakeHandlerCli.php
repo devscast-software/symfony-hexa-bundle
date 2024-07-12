@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:handler',
+    name: 'devscast:make:handler',
     description: 'Create a new command handler class',
 )]
 #[AsTaggedItem('console.command')]

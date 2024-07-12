@@ -29,7 +29,6 @@ final readonly class DataMapper
 
     public static function mapToArray(object $source, array $ignore = []): array
     {
-        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()->getPropertyAccessor();
         $sourceReflection = new \ReflectionClass($source);
 
         $data = [];

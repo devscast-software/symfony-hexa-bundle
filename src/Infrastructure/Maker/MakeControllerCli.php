@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:controller',
+    name: 'devscast:make:controller',
     description: 'Create a new crud controller class',
 )]
 #[AsTaggedItem('console.command')]
@@ -85,7 +85,7 @@ class MakeControllerCli extends AbstractMakeCli
                 'entityClassName' => $entity,
                 'domain' => $domain,
             ],
-            output: "src/Infrastructure/{$domain}/Symfony/Controller/Admin/{$entity}Controller.php",
+            output: "src/Infrastructure/{$domain}/Symfony/Controller/Admin/Admin{$entity}Controller.php",
             force: $force
         );
         $this->io->text(sprintf('%sController successfully created', $entity));

@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:command',
+    name: 'devscast:make:command',
     description: 'Create a new command class',
 )]
 #[AsTaggedItem('console.command')]
@@ -87,7 +87,7 @@ class MakeCommandCli extends AbstractMakeCli
 
             try {
                 if ($input->getOption('with-handler') !== false) {
-                    $makeHandlerCli = $this->getApplication()?->find('ddd:make:handler');
+                    $makeHandlerCli = $this->getApplication()?->find('devscast:make:handler');
                     $makeHandlerCli?->run(new ArrayInput([
                         'name' => $name,
                         'domain' => $domain,
@@ -96,7 +96,7 @@ class MakeCommandCli extends AbstractMakeCli
                 }
 
                 if ($input->getOption('with-form') !== false) {
-                    $makeFormCli = $this->getApplication()?->find('ddd:make:form');
+                    $makeFormCli = $this->getApplication()?->find('devscast:make:form');
                     $makeFormCli?->run(new ArrayInput([
                         'name' => $name,
                         'domain' => $domain,

@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:exception',
+    name: 'devscast:make:exception',
     description: 'Create a new exception class',
 )]
 #[AsTaggedItem('console.command')]

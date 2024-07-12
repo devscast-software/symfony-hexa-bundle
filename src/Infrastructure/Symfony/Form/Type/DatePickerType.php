@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DatePickerType extends DateTimeType
 {
-    public function configureOptions(OptionsResolver $resolver): OptionsResolver
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults([
@@ -25,7 +25,5 @@ class DatePickerType extends DateTimeType
             'html5' => false,
             'widget' => 'single_text',
         ]);
-
-        return $resolver;
     }
 }

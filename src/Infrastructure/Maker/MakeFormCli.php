@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:form',
+    name: 'devscast:make:form',
     description: 'create a new form class',
 )]
 #[AsTaggedItem('console.command')]
@@ -96,7 +96,10 @@ class MakeFormCli extends AbstractMakeCli
         $this->createFile(
             template: 'command_form.php',
             params: [
-                'commandClassProperties' => $this->getClassProperties($fqcn),
+                'commandClassProperties' => $this->getClassProperties(
+                    fqcn: $fqcn,
+                    ignore: ['_entity', 'created_at', 'updated_at']
+                ),
                 'commandClassName' => $commandClassName,
                 'commandFormClassName' => $commandFormClassName,
                 'domain' => $domain,

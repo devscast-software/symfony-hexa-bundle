@@ -3,7 +3,8 @@ parameters:
     paths:
         - src
         - tests
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+
     ignoreErrors:
-        - '#Cannot call method scalarNode\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::scalarNode\(\)#'

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\Listener;
+namespace Devscast\Bundle\HexaBundle\Infrastructure\Doctrine\EventListener;
 
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 /**
- * Class CreatedAtListener.
+ * Class TimestampPrePersistListener.
  *
  * @author bernard-ng <bernard@devscast.tech>
  */
-final readonly class CreatedAtListener
+final readonly class TimestampPrePersistListener
 {
     public function prePersist(LifecycleEventArgs $args): void
     {

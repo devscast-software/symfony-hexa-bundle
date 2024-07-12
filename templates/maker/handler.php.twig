@@ -9,7 +9,7 @@ use Application\{{ domain }}\Command\{{ commandClassName }};
 use Domain\{{ domain }}\Entity\{{ entityClassName }};
 use Domain\{{ domain }}\Repository\{{ repositoryInterfaceName }};
 {% endif %}
-use Devscast\Bundle\HexaBundle\Application\Mapper;
+use Devscast\Bundle\HexaBundle\Application\DataMapper;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -31,9 +31,9 @@ final readonly class {{ handlerClassName }}
     {
 {% if repositoryInterfaceName %}
     {% if is_create_command %}
-    $this->repository->save(Mapper::getMappedObject($command, new {{ entityClassName }}()));
+    $this->repository->save(DataMapper::getMappedObject($command, new {{ entityClassName }}()));
     {% elseif is_update_command %}
-    $this->repository->save(Mapper::getMappedObject($command, $command->_entity));
+    $this->repository->save(DataMapper::getMappedObject($command, $command->_entity));
     {% elseif is_delete_command %}
     $this->repository->delete($command->_entity);
     {% endif %}

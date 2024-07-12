@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:repository',
+    name: 'devscast:make:repository',
     description: 'create a new repository class',
 )]
 #[AsTaggedItem('console.command')]
@@ -59,7 +59,7 @@ class MakeRepositoryCli extends AbstractMakeCli
 
             if ($confirm && count($entities) > 0) {
                 foreach ($entities as $entity) {
-                    $makeRepositoryCli = $this->getApplication()?->find('ddd:make:repository');
+                    $makeRepositoryCli = $this->getApplication()?->find('devscast:make:repository');
                     $makeRepositoryCli?->run(new ArrayInput([
                         'domain' => $domain,
                         'entity' => $entity,

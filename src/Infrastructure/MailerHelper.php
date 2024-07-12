@@ -72,7 +72,7 @@ final readonly class MailerHelper
      * @throws RuntimeError
      * @throws LoaderError
      */
-    public function sendNotificationEmail(
+    public function notification(
         object $event,
         string $template,
         string $subject,

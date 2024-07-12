@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
  * @author bernard-ng <bernard@devscast.tech>
  */
 #[AsCommand(
-    name: 'ddd:make:template',
+    name: 'devscast:make:template',
     description: 'Create a new admin template',
 )]
 #[AsTaggedItem('console.command')]
