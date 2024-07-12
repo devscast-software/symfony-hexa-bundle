@@ -1,5 +1,5 @@
 {
-  "name": "devscast/symfon-hexa-bundle",
+  "name": "devscast/symfony-hexa-bundle",
   "type": "library",
   "license": "CC-BY-NC-SA-4.0",
   "description": "Set of reusable components for Symfony applications built with Hexagonal Architecture",
