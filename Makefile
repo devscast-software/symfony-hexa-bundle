@@ -3,17 +3,8 @@
 # -----------------------------------
 # Variables
 # -----------------------------------
-is_docker := $(shell docker info > /dev/null 2>&1 && echo 1)
 user := $(shell id -u)
 group := $(shell id -g)
-
-ifeq ($(is_docker), 1)
-	php := USER_ID=$(user) GROUP_ID=$(group) docker-compose run --rm --no-deps php
-	composer := $(php) composer
-else
-	php := php
-	composer := composer
-endif
 
 # -----------------------------------
 # Recipes
@@ -24,17 +15,17 @@ help: ## affiche cet aide
 
 .PHONY: lint
 lint: vendor/autoload.php ## affiche les erreurs de formatage de code
-	$(php) vendor/bin/ecs
-	$(php) vendor/bin/phpstan
+	php vendor/bin/ecs
+	php vendor/bin/phpstan
 
 .PHONY: test
 test: vendor/autoload.php ## lance les tests
-	$(php) vendor/bin/phpunit
+	php vendor/bin/phpunit
 
 .PHONY: lint-fix
 lint-fix: vendor/autoload.php ## corrige les erreurs de formatage de code
-	$(php) vendor/bin/ecs --fix
+	php vendor/bin/ecs --fix
 
 vendor/autoload.php: composer.lock # installe les dépendances PHP
-	$(composer) update
-	$(composer) dump-autoload --optimize
+	composer update
+	composer dump-autoload --optimize
