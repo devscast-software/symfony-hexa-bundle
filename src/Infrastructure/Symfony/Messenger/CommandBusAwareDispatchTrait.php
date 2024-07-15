@@ -21,6 +21,10 @@ trait CommandBusAwareDispatchTrait
     protected function dispatchSync(object $command): ?Envelope
     {
         try {
+            if (property_exists($this, 'commandBus')) {
+                return $this->commandBus->dispatch($command);
+            }
+
             return $this->getCommandBus()->dispatch($command);
         } catch (HandlerFailedException $e) {
             while ($e instanceof HandlerFailedException) {
@@ -50,6 +54,10 @@ trait CommandBusAwareDispatchTrait
 
     protected function dispatchAsync(object $command): Envelope
     {
+        if (property_exists($this, 'commandBus')) {
+            return $this->commandBus->dispatch($command);
+        }
+
         return $this->getCommandBus()->dispatch($command);
     }
 }

@@ -37,7 +37,7 @@ class MakeFormCli extends AbstractMakeCli
 
         /** @var string $domain */
         $domain = $input->getArgument('domain');
-        $this->askClass($input, 'name', "Application/${domain}/Command/*");
+        $this->askClass($input, 'name', sprintf('Application/%s/Command/*', $domain));
     }
 
     /**

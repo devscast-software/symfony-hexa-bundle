@@ -18,11 +18,11 @@ abstract class AbstractCrudController extends AbstractController
 {
     use DeleteCsrfTrait;
 
-    protected const ROUTE_PREFIX = 'admin_';
+    protected const string ROUTE_PREFIX = 'admin_';
 
-    protected const DOMAIN = 'shared';
+    protected const string DOMAIN = 'shared';
 
-    protected const ENTITY = 'default';
+    protected const string ENTITY = 'default';
 
     public function handleCommand(object $command, CrudParams $params = new CrudParams()): Response
     {

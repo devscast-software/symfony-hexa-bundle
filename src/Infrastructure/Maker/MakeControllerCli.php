@@ -37,7 +37,7 @@ class MakeControllerCli extends AbstractMakeCli
 
         /** @var string $domain */
         $domain = $input->getArgument('domain');
-        $this->askClass($input, 'entity', "Domain/${domain}/Entity/*");
+        $this->askClass($input, 'entity', sprintf('Domain/%s/Entity/*', $domain));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
