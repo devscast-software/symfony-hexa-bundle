@@ -19,7 +19,9 @@ trait FlashMessageTrait
     protected function addSafeMessageExceptionFlash(\Throwable $e): void
     {
         $message = $this->getSafeMessageException($e);
-        $this->getLogger()->error($e->getMessage(), $e->getTrace());
+        $this->getLogger()->debug($message, [
+            'exception' => $e
+        ]);
         $this->addFlash('error', $message);
     }
 

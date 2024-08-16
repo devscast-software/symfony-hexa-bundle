@@ -106,7 +106,9 @@ final readonly class MailerHelper
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            $this->logger->critical($e->getMessage(), $e->getTrace());
+            $this->logger->alert("cannot sent email", [
+                'exception' => $e
+            ]);
         }
     }
 }
